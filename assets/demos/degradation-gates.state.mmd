@@ -1,0 +1,12 @@
+stateDiagram-v2
+    [*] --> Streaming: fence arrives
+    Streaming --> CodeBlock: still streaming
+    Streaming --> Gates: document settled
+    Gates --> CodeBlock: source > 32768 chars
+    Gates --> Rendering: source OK
+    Rendering --> CodeBlock: render throws / empty SVG
+    Rendering --> Sanitize: SVG produced
+    Sanitize --> CodeBlock: active content found
+    Sanitize --> Inline: clean SVG
+    Inline --> [*]
+    CodeBlock --> [*]: graceful degradation

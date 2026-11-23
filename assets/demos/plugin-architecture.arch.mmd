@@ -1,0 +1,22 @@
+flowchart TB
+    subgraph DSH["DeepSeek Harness chat"]
+        F["fence: ```mermaid<br/>ChatView renderCode"]
+        S["slot conversation.chat.markdown.fence"]
+        CB["stock FenceCodeBlock"]
+    end
+    subgraph L["dsh-mermaid-pele layer (key: mermaid)"]
+        G{"render gates"}
+        subgraph GATES[" "]
+            G1["1 streaming → code"]
+            G2["2 &gt;32k chars → code"]
+            G3["3 chunk cache"]
+            G4["4 render error/empty → code"]
+            G5["5 sanitize SVG"]
+        end
+        PELE["Pele 1.13.0<br/>(vendored chunk)"]
+    end
+    F --> S
+    S --> G
+    G -- pass --> PELE
+    PELE --> SVG["inline diagram<br/>(theme-bridged)"]
+    G -- "any gate declines" --> CB

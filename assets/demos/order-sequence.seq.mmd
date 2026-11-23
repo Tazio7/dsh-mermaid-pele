@@ -1,0 +1,15 @@
+sequenceDiagram
+    autonumber
+    actor U as User
+    participant A as DSH Agent
+    participant P as dsh-mermaid-pele plugin
+    participant E as Pele engine
+    U->>A: Send message with ```mermaid fence
+    A->>P: dispatch fence (lang=mermaid, settled)
+    P->>P: gates: streaming? size? cache?
+    P->>E: render(source)
+    E-->>P: SVG (sanitized)
+    P-->>U: diagram inline
+    alt render fails
+        P-->>U: stock code block (graceful fallback)
+    end

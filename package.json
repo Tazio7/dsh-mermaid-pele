@@ -1,0 +1,43 @@
+{
+  "name": "dsh-mermaid-pele",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mermaid diagram rendering for DeepSeek Harness chat fences, powered by the Pele engine (Obsidian's renderer).",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "mermaid",
+    "pele",
+    "diagrams",
+    "markdown",
+    "code-fence"
+  ],
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./lib/client.js"
+  },
+  "files": [
+    "index.js",
+    "lib/client.js",
+    "lib/client.pele.js",
+    "lib/vendor/pele.global.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "NOTICE",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "compatibility": { "dsh": "0.2.2-rc.5" },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": ["@deepseek-ai/dsh-client-ui-chat"]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# Bundle patch applied over the selected DSH profile when this package is
+# listed in dsh.profile.bundles. `name` must match this package.json.
+- insert:
+    - id: mermaid
+      name: 'dsh-mermaid-pele'
+      config: {}
